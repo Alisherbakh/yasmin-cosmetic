@@ -5,7 +5,7 @@ import { Member } from "../libs/types/member";
 // schema model built in 2 ways 
 // Schema first & Code first
 
-const memberSchema = new Schema({
+const memberSchema = new Schema<Member>({
     memberType: {
         type: String,
         enum: MemberType,

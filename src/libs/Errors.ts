@@ -18,7 +18,7 @@ export enum Message {
     USED_NICK_PHONE = "You are inserting already used nick or phone!",
     TOKEN_CREATION_FAILED = "Token creation error!",
     NO_MEMBER_NICK = "NO member with that member nick!",
-    BLOCKED_USER = "You have been blocked, contact the restaurant!",
+    BLOCKED_USER = "You have been blocked, contact the store!",
     WRONG_PASSWORD = "Wrong password , please try again!",
     NOT_AUTHENTICATED = "You are not authenticated, Please login first!",
     
@@ -30,7 +30,7 @@ class Errors extends Error {
 
     static standard = {
         code: HttpCode.INTERNAL_SERVER_ERROR,
-        message: Message.SOMETHING_WENT_WRONG,
+        Message: Message.SOMETHING_WENT_WRONG,
     }
 
     constructor(statusCode: HttpCode, statusMessage: Message) {
