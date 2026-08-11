@@ -13,9 +13,14 @@ $(function () {
 
     $(".new-product-status").on("change", async function(e) {
         const id = e.target.id;
-        const productStatus = $(`#${id}.new-product-status`).val();
+        const $select = $(`#${id}.new-product-status`);
+        const productStatus = $select.val();
         console.log("id:", id);
         console.log("productStatus:", productStatus);
+
+        $select
+            .removeClass("status-PAUSE status-PROCESS status-DELETE")
+            .addClass(`status-${productStatus}`);
 
         try {
             const response = await axios.post(`/admin/product/${id}`, {productStatus: productStatus});

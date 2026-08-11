@@ -1,12 +1,30 @@
 console.log("Users frontend javascript file");
 
 $(function () {
+    $(".user-search").on("input", function () {
+        const query = $(this).val().trim().toLowerCase();
+
+        $(".admin-table tbody tr").each(function () {
+            const $row = $(this);
+            const name = $row.find(".user-name-cell").text().toLowerCase();
+            const phone = $row.find(".user-phone-cell").text().toLowerCase();
+            const matches = !query || name.includes(query) || phone.includes(query);
+
+            $row.toggle(matches);
+        });
+    });
+
     $(".member-status").on("change", function (e) {
         const id = e.target.id;
         console.log("id:", id);
 
-        const memberStatus = $(`#${id}.member-status`).val();
+        const $select = $(`#${id}.member-status`);
+        const memberStatus = $select.val();
         console.log("memberStatus:", memberStatus);
+
+        $select
+            .removeClass("status-ACTIVE status-BLOCK status-DELETE")
+            .addClass(`status-${memberStatus}`);
 
         //TODO Axios updateChosenUser
         axios

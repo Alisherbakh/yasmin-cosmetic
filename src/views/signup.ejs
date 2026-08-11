@@ -4,105 +4,133 @@
 
 <body>
   <div class="signup-container">
-    <form onsubmit="return validateSignupForm()" action="/admin/signup" method="POST" enctype="multipart/form-data">
-      <div class="signup-frame" style="width: 650px">
-        <div class="signup-top">
-          <span>Signup</span>
-          <div>Go back <a href="/admin" style="color: #6440fb">Home</a></div>
-          <p>
-            Already signed up?
-            <a href="/admin/login" style="color: #6440fb">Login</a>
-          </p>
-        </div>
+    <a class="back-home-link" href="/admin">&larr; Back to Home</a>
+    <form
+      onsubmit="return validateSignupForm()"
+      action="/admin/signup"
+      method="POST"
+      enctype="multipart/form-data"
+      class="signup-frame"
+    >
+      <div class="signup-top">
+        <span class="signup-title">Create Account</span>
+        <p class="signup-subtitle">Sign up to create your store</p>
+      </div>
 
-        <div class="sign-input-frame" style="justify-content: space-between">
-          <div class="sign-up-frame">
-            <label>Store name *</label>
-            <input
-              type="text"
-              name="memberNick"
-              class="member-nick"
-              placeholder="Username"
-              value=""
-            />
-          </div>
-          <div class="sign-up-frame">
-            <label>Phone *</label>
-            <input
-              type="text"
-              name="memberPhone"
-              class="member-phone"
-              placeholder="Phone"
-              value=""
-            />
-          </div>
+      <div class="sign-input-frame">
+        <div class="sign-up-frame">
+          <label>Store name *</label>
+          <input
+            type="text"
+            name="memberNick"
+            class="member-nick"
+            placeholder="Enter your store name"
+            value=""
+          />
         </div>
-        <div class="sign-input-frame" style="justify-content: space-between">
-          <div class="sign-up-frame">
-            <label>Password *</label>
+        <div class="sign-up-frame">
+          <label>Phone *</label>
+          <input
+            type="text"
+            name="memberPhone"
+            class="member-phone"
+            placeholder="Enter your phone"
+            value=""
+          />
+        </div>
+      </div>
+
+      <div class="sign-input-frame">
+        <div class="sign-up-frame">
+          <label>Password *</label>
+          <div class="password-field">
             <input
               type="password"
               name="memberPassword"
               class="member-password"
-              placeholder="Password"
+              placeholder="Enter your password"
               value=""
             />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg class="eye-icon eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="eye-icon eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.6 21.6 0 0 1 5.06-5.94M9.9 4.24A10.4 10.4 0 0 1 12 4c7 0 11 7 11 7a21.6 21.6 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
           </div>
-          <div class="sign-up-frame">
-            <label>Repeat password *</label>
+        </div>
+        <div class="sign-up-frame">
+          <label>Repeat password *</label>
+          <div class="password-field">
             <input
               type="password"
               name="confirmPassword"
               class="confirm-password"
-              placeholder="Repeat password"
+              placeholder="Repeat your password"
               value=""
             />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg class="eye-icon eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="eye-icon eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.6 21.6 0 0 1 5.06-5.94M9.9 4.24A10.4 10.4 0 0 1 12 4c7 0 11 7 11 7a21.6 21.6 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
           </div>
         </div>
-
-        <div class="signup-input-frame">
-          <div class="media-frame">
-            <img class="upload-img-frame" src="/img/default.jpeg" />
-            <div class="upload-container">
-              <span class="media-text">Product image</span>
-              <div
-                class="file-box bs3-primary preview-image"
-                style="margin-top: 25px; display: flex"
-              >
-                <input
-                  class="upload-name"
-                  value="Choose image"
-                  disabled="disabled"
-                />
-                <label for="input-file" class="file-input-label"
-                  >Upload Image</label
-                >
-                <input
-                  type="file"
-                  id="input-file"
-                  class="upload-hidden form-control-file member-image"
-                  name="memberImage"
-                />
-              </div>
-              <p class="thumbnail-desc">
-                Please upload a store logo or image.<br />
-                Attention only:.jpg, .jpeg, or .png. <br />
-                formats allowed!
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <input name="memberType" value="STORE" hidden />
-
-        <button class="signup-btn btn" name="signup" type="submit">
-          Signup
-        </button>
       </div>
+
+      <div class="signup-input-frame">
+        <div class="media-frame">
+          <img class="upload-img-frame" src="/img/default.jpeg" />
+          <div class="upload-container">
+            <span class="media-text">Store logo</span>
+            <div
+              class="file-box bs3-primary preview-image"
+              style="margin-top: 25px; display: flex"
+            >
+              <input
+                class="upload-name"
+                value="Choose image"
+                disabled="disabled"
+              />
+              <label for="input-file" class="file-input-label"
+                >Upload Image</label
+              >
+              <input
+                type="file"
+                id="input-file"
+                class="upload-hidden form-control-file member-image"
+                name="memberImage"
+              />
+            </div>
+            <p class="thumbnail-desc">
+              Please upload a store logo or image.<br />
+              Only .jpg, .jpeg, or .png formats are allowed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <input name="memberType" value="STORE" hidden />
+
+      <button class="signup-btn btn" name="signup" type="submit">
+        Create account
+      </button>
+
+      <p class="login-hint">
+        Already have an account? <a href="/admin/login">Login</a>
+      </p>
     </form>
   </div>
 
- 
   <script type="text/javascript" src="/js/signup.js"></script>
 </body>
 

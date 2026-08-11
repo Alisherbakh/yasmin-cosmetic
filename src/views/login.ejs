@@ -3,16 +3,14 @@
 <link rel="stylesheet" type="text/css" href="/css/login.css" />
 
 <body>
-  <form class="login-container" action="/admin/login" METHOD="POST">
-    <div class="login-frame">
+  <div class="login-container">
+    <a class="back-home-link" href="/admin">&larr; Back to Home</a>
+    <form class="login-frame" action="/admin/login" method="POST">
       <div class="login-top">
-        <span>Enter</span>
-        <div>Go back <a href="/admin" style="color: #6440fb">Home</a></div>
-        <p>
-          Not registered yet?
-          <a href="/admin/signup" style="color: #6440fb">Signup</a>
-        </p>
+        <span class="login-title">Welcome Back</span>
+        <p class="login-subtitle">Login to your account</p>
       </div>
+
       <div class="login-input-frame">
         <div class="login-input-container">
           <label>Store name *</label>
@@ -20,26 +18,53 @@
             type="text"
             name="memberNick"
             class="member-nick"
-            placeholder="Username"
+            placeholder="Enter your store name"
             value=""
             required
           />
         </div>
         <div class="login-input-container">
           <label>Password *</label>
-          <input
-            type="password"
-            name="memberPassword"
-            class="member-password"
-            placeholder="Password"
-            value=""
-            required
-          />
+          <div class="password-field">
+            <input
+              type="password"
+              name="memberPassword"
+              class="member-password"
+              placeholder="Enter your password"
+              value=""
+              required
+            />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg class="eye-icon eye-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="eye-icon eye-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.6 21.6 0 0 1 5.06-5.94M9.9 4.24A10.4 10.4 0 0 1 12 4c7 0 11 7 11 7a21.6 21.6 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      <div class="login-options">
+        <label class="remember-me">
+          <input type="checkbox" class="remember-checkbox" />
+          Remember me
+        </label>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </div>
+
       <button class="login-btn btn" name="login" type="submit">Login</button>
-    </div>
-  </form>
+
+      <p class="signup-hint">
+        Don't have an account? <a href="/admin/signup">Sign up</a>
+      </p>
+    </form>
+  </div>
+
+  <script type="text/javascript" src="/js/login.js"></script>
 </body>
 
 <%- include('includes/footer') %>

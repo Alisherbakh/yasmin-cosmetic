@@ -1,98 +1,63 @@
 console.log("Home frontend javascript file");
 
-function fitElementToParent(el, padding) {
-  let timeout = null;
+import {
+  createTimeline,
+  stagger,
+  utils,
+} from 'https://esm.sh/animejs';
 
-  function resize() {
-    if (timeout) clearTimeout(timeout);
-    anime.set(el, { scale: 1 });
-    let pad = padding || 0;
-    let parentEl = el.parentNode;
-    let elOffsetWidth = el.offsetWidth - pad;
-    let parentOffsetWidth = parentEl.offsetWidth;
-    let ratio = parentOffsetWidth / elOffsetWidth;
-    timeout = setTimeout(anime.set(el, { scale: ratio }), 10);
-  }
+const { random, cos, sin, sqrt, PI } = Math;
+const count = 2500;
+const duration = 3000;
+const container = document.querySelector('.home-animation');
+const win = { w: window.innerWidth * .26, h: window.innerHeight * .26 };
+const target = { x: 0, y: 0, r: win.w * .25 };
+const radius = Symbol();
+const theta = Symbol();
 
-  resize();
-  window.addEventListener("resize", resize);
+for (let i = 0; i < count; i++) {
+  const $el = document.createElement('div');
+  const h = utils.random(15, 25);
+  const l = utils.random(10, 18);
+  utils.set($el, { background: `hsl(${h}, 60%, ${l}%)` });
+  $el[theta] = random() * PI * 2;
+  $el[radius] = target.r * sqrt(random());
+  container.appendChild($el);
 }
 
-(function () {
-  const sphereEl = document.querySelector(".sphere-animation");
-  const spherePathEls = sphereEl.querySelectorAll(".sphere path");
-  const pathLength = spherePathEls.length;
-  const animations = [];
+const tl = createTimeline({
+  defaults: {
+    loop: true,
+    ease: 'inOut(1.3)',
+    onLoop: self => self.refresh(),
+  },
+});
 
-  fitElementToParent(sphereEl);
+tl.add('.home-animation div', {
+  x: $el => target.x + ($el[radius] * cos($el[theta])),
+  y: $el => target.y + ($el[radius] * sin($el[theta])),
+  duration: () => duration + utils.random(-100, 100),
+  ease: 'inOut(1.5)',
+  onLoop: self => {
+    const t = self.targets[0];
+    t[theta] = random() * PI * 2;
+    t[radius] = target.r * sqrt(random());
+    self.refresh();
+  },
+}, stagger((duration / count) * 1.125))
+.add(target, {
+  r: () => win.w * utils.random(.05, .5, 2),
+  duration: 1250,
+}, 0)
+.add(target, {
+  x: () => utils.random(-win.w, win.w),
+  modifier: x => x + sin(tl.currentTime * .0007) * (win.w * .65),
+  duration: 2800,
+}, 0)
+.add(target, {
+  y: () => utils.random(-win.h, win.h),
+  modifier: y => y + cos(tl.currentTime * .00012) * (win.h * .65),
+  duration: 1800,
+}, 0);
 
-  const breathAnimation = anime({
-    begin: function () {
-      for (let i = 0; i < pathLength; i++) {
-        animations.push(
-          anime({
-            targets: spherePathEls[i],
-            stroke: {
-              value: ["rgba(255,75,75,1)", "rgba(80,80,80,.35)"],
-              duration: 500,
-            },
-            translateX: [2, -4],
-            translateY: [2, -4],
-            easing: "easeOutQuad",
-            autoplay: false,
-          })
-        );
-      }
-    },
-    update: function (ins) {
-      animations.forEach(function (animation, i) {
-        let percent = (1 - Math.sin(i * 0.35 + 0.0022 * ins.currentTime)) / 2;
-        animation.seek(animation.duration * percent);
-      });
-    },
-    duration: Infinity,
-    autoplay: false,
-  });
-
-  const introAnimation = anime
-    .timeline({
-      autoplay: false,
-    })
-    .add(
-      {
-        targets: spherePathEls,
-        strokeDashoffset: {
-          value: [anime.setDashoffset, 0],
-          duration: 3900,
-          easing: "easeInOutCirc",
-          delay: anime.stagger(190, { direction: "reverse" }),
-        },
-        duration: 2000,
-        delay: anime.stagger(60, { direction: "reverse" }),
-        easing: "linear",
-      },
-      0
-    );
-
-  const shadowAnimation = anime(
-    {
-      targets: "#sphereGradient",
-      x1: "25%",
-      x2: "25%",
-      y1: "0%",
-      y2: "75%",
-      duration: 30000,
-      easing: "easeOutQuint",
-      autoplay: false,
-    },
-    0
-  );
-
-  function init() {
-    introAnimation.play();
-    breathAnimation.play();
-    shadowAnimation.play();
-  }
-
-  init();
-})();
+tl.seek(20000)
