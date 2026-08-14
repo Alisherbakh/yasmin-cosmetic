@@ -20,37 +20,49 @@
   margin-bottom: 0;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  color: #3a3a3a;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft, #a89a95);
 }
 
 .field-group input,
 .field-group select,
 .field-group textarea {
-  padding: 0 16px;
+  padding: 0 14px;
   width: 100%;
-  height: 48px;
-  background: #f9f9fa;
-  border: 1px solid #e3e3e6;
+  height: 46px;
+  background: var(--panel-2, #2a2224);
+  border: 1px solid var(--line, #3a2f31);
   border-radius: 10px;
   font-family: "Poppins";
-  font-size: 14px;
-  color: #232323;
+  font-size: 13px;
+  color: var(--ink, #f5efe9);
 }
 
 .field-group textarea {
-  padding: 14px 16px;
+  padding: 13px 14px;
   height: 110px;
   resize: vertical;
+}
+
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+  color: var(--ink-faint, #6e6062);
 }
 
 .field-group input:focus,
 .field-group select:focus,
 .field-group textarea:focus {
   outline: none;
-  border-color: #a3435b;
-  background: #ffffff;
+  border-color: var(--gold, #c6a15b);
+  background: var(--panel-2, #2a2224);
+}
+
+.field-group select option {
+  background: var(--panel-2, #2a2224);
+  color: var(--ink, #f5efe9);
 }
 
 .field-row {
@@ -85,9 +97,9 @@
 .upload-img-box {
   position: relative;
   aspect-ratio: 1 / 1;
-  border: 1.5px dashed #d8d5d2;
+  border: 1.5px dashed var(--line, #3a2f31);
   border-radius: 12px;
-  background: #f9f9fa;
+  background: var(--panel-2, #2a2224);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,19 +109,21 @@
 }
 
 .upload-img-box:hover {
-  border-color: #a3435b;
+  border-color: var(--gold, #c6a15b);
 }
 
 .upload-img-box img {
   width: 60%;
   height: 60%;
   object-fit: contain;
+  filter: invert(0.75) sepia(0.2) saturate(0.6);
 }
 
 .upload-img-box img[src^="data:"] {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: none;
 }
 
 .upload-img-box input[type="file"] {

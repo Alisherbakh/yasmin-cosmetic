@@ -4,20 +4,20 @@
   padding: 0 16px;
   height: 40px;
   min-width: 220px;
-  background: #f9f9fa;
-  border: 1px solid #e3e3e6;
+  background: var(--panel-2, #2a2224);
+  border: 1px solid var(--line, #3a2f31);
   border-radius: 10px;
   font-family: "Poppins";
-  font-size: 14px;
-  color: #232323;
+  font-size: 13px;
+  color: var(--ink, #f5efe9);
 }
 
 .user-search:focus {
   outline: none;
-  border-color: #a3435b;
-  background: #ffffff;
+  border-color: var(--gold, #c6a15b);
+  background: var(--panel-2, #2a2224);
 }
 
 .user-search::placeholder {
-  color: #9a9aa0;
+  color: var(--ink-faint, #6e6062);
 }

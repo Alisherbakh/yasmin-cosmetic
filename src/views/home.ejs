@@ -35,6 +35,30 @@
     </div>
 
     <div class="home-animation"></div>
+
+    <div class="home-hero">
+      <div class="home-brand-title">Yasmin</div>
+      <div class="home-brand-sub">Cosmetics &middot; Admin</div>
+      <p class="home-tagline">
+        <% if(!member) { %>
+        Sign in to manage your catalog, orders, and members.
+        <% } else { %>
+        Welcome back, <%= member.memberNick %>.
+        <% } %>
+      </p>
+
+      <div class="home-auth-card">
+        <% if(!member) { %>
+        <a href="/admin/login" class="home-btn home-btn-primary">Log in</a>
+        <a href="/admin/signup" class="home-btn home-btn-ghost">Create an account</a>
+        <% } else { %>
+        <a href="/admin/product/all" class="home-btn home-btn-primary">Go to Catalog</a>
+        <a href="/admin/user/all" class="home-btn home-btn-ghost">View Users</a>
+        <% } %>
+      </div>
+
+      <div class="home-foot-hint">YASMIN COSMETICS &middot; STORE ADMINISTRATION</div>
+    </div>
   </div>
 
   <script type="module" src="/js/home.js"></script>

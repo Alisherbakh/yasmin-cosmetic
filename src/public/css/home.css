@@ -1,62 +1,209 @@
+:root {
+  --bg: #1b1417;
+  --panel: #221b1d;
+  --panel-2: #2a2224;
+  --gold: #c6a15b;
+  --gold-soft: #e8d3a3;
+  --rose: #d88aa0;
+  --ink: #f5efe9;
+  --ink-soft: #a89a95;
+  --line: #3a2f31;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100dvh;
-  background: linear-gradient(
-    to top,
-    #DCB697 0%,
-    #9BA5AE 35%,
-    #3E5879 100%
-  );
+  min-height: 100dvh;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% -10%, #2a1f22 0%, #1b1417 55%);
+  overflow-x: hidden;
 }
 
 .home-container {
   position: relative;
-  width: auto;
-  height: auto;
-  min-height: 100%;
+  width: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .home-container a {
   text-decoration: none;
-  color: #000000;
+}
+
+/* Top nav */
+.home-container .navigation-menu {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 56px;
+}
+
+.home-container .navigation-menu .nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .home-container .nav-item a {
-  color: #e3c08d;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
 }
 
-.home-container .nav-item a.disabled {
-  color: #898071;
+.home-container .nav-item a.active,
+.home-container .nav-item a:hover {
+  color: var(--gold-soft);
 }
 
-.home-container .navigation-menu {
-  position: relative;
-  z-index: 10000;
-  color: #efefee;
-  font-size: 40px;
-  font-family: monospace;
-}
-
+/* Ambient particle field */
 .home-container .home-animation {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.home-container .home-animation div {
+.home-animation .spark {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1em;
-  height: 1em;
-  margin: -.5em 0 0 -.5em;
-  font-size: clamp(3px, 2vw, 4px);
-  border-radius: 1em;
-  background-color: currentColor;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  opacity: 0;
+  animation: home-twinkle ease-in-out infinite;
+}
+
+.home-animation .drift {
+  position: absolute;
+  bottom: -8%;
+  border-radius: 50%;
+  filter: blur(0.5px);
+  opacity: 0;
+  animation: home-rise linear infinite;
+}
+
+@keyframes home-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@keyframes home-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-112vh) translateX(var(--x-drift, 0));
+    opacity: 0;
+  }
+}
+
+/* Hero */
+.home-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home-brand-title {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: 48px;
+  letter-spacing: 3px;
+  color: var(--ink);
+}
+
+.home-brand-sub {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 7px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.home-tagline {
+  font-family: "Poppins";
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 22px 0 36px;
+}
+
+.home-auth-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 36px 44px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 280px;
+}
+
+.home-btn {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 26px;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.home-btn-primary {
+  background: linear-gradient(135deg, var(--gold), #a9803f);
+  color: #211a13;
+}
+
+.home-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.home-btn-ghost {
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid var(--line);
+}
+
+.home-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.home-foot-hint {
+  margin-top: 24px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
 }

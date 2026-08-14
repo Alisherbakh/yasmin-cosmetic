@@ -1,61 +1,126 @@
+:root {
+  --bg: #1b1417;
+  --panel: #221b1d;
+  --panel-2: #2a2224;
+  --gold: #c6a15b;
+  --gold-soft: #e8d3a3;
+  --rose: #d88aa0;
+  --ink: #f5efe9;
+  --ink-soft: #a89a95;
+  --ink-faint: #6e6062;
+  --line: #3a2f31;
+}
+
 .login-container {
   position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 40px 20px;
-  background: linear-gradient(to top, #dcb697 0%, #9ba5ae 35%, #3e5879 100%);
+  background: var(--bg);
 }
 
 .login-container a {
   text-decoration: none;
-  color: black;
+  color: var(--ink);
+}
+
+/* Left brand panel */
+.login-container .login-side {
+  flex: 1.1;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 30% 20%, #3a2a2c 0%, #1b1417 65%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px;
+}
+
+.login-container .login-side-glow {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 161, 91, 0.18), transparent 70%);
+  bottom: -100px;
+  right: -80px;
+}
+
+.login-container .side-brand-title {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+
+.login-container .side-brand-sub {
+  font-family: "Poppins";
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.login-container .login-side-quote {
+  position: relative;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--gold-soft);
+  max-width: 420px;
+}
+
+.login-container .login-side-foot {
+  position: relative;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.5px;
+}
+
+/* Right form panel */
+.login-container .login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: var(--panel);
+}
+
+.login-container .login-form-card {
+  width: 100%;
+  max-width: 380px;
 }
 
 .login-container .back-home-link {
+  display: inline-block;
   font-family: "Poppins";
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
-  color: #ffffff;
-  opacity: 0.85;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
 }
 
 .login-container .back-home-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.login-container .login-frame {
-  position: relative;
-  width: 420px;
-  max-width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  border-radius: 18px;
-  background: #ffffff;
-  padding: 36px 32px;
-  box-shadow: 0 20px 45px rgba(23, 28, 43, 0.22);
+  color: var(--gold-soft);
 }
 
 .login-container .login-top {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
 .login-container .login-title {
-  font-family: "Poppins";
+  font-family: "Fraunces", serif;
   font-style: normal;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 32px;
-  color: #232323;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--ink);
 }
 
 .login-container .login-subtitle {
@@ -63,14 +128,14 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  color: #8a8a8a;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-soft);
 }
 
 .login-container .login-frame .login-input-frame {
   position: relative;
-  margin-top: 24px;
+  margin-top: 28px;
   width: 100%;
   height: auto;
   display: flex;
@@ -79,7 +144,7 @@
 
 .login-container .login-input-container {
   position: relative;
-  margin-top: 16px;
+  margin-top: 18px;
   width: 100%;
   height: auto;
   display: flex;
@@ -94,30 +159,35 @@
   margin-bottom: 0px;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  color: #3a3a3a;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 .login-container .login-input-container input {
   position: relative;
   margin-top: 8px;
-  padding-left: 16px;
+  padding-left: 15px;
   width: 100%;
-  height: 48px;
-  background: #f9f9fa;
-  border: 1px solid #e3e3e6;
-  border-radius: 10px;
+  height: 46px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   font-family: "Poppins";
-  font-size: 14px;
-  color: #232323;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.login-container .login-input-container input::placeholder {
+  color: var(--ink-faint);
 }
 
 .login-container .login-input-container input:focus {
   outline: none;
-  border-color: #a3435b;
-  background: #ffffff;
+  border-color: var(--gold);
+  background: var(--panel-2);
 }
 
 .login-container .password-field {
@@ -139,12 +209,12 @@
   background: none;
   border: none;
   padding: 0;
-  color: #9a9aa0;
+  color: var(--ink-soft);
   cursor: pointer;
 }
 
 .login-container .toggle-password:hover {
-  color: #a3435b;
+  color: var(--gold-soft);
 }
 
 .login-container .toggle-password .eye-closed {
@@ -160,12 +230,12 @@
 }
 
 .login-container .login-options {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .login-container .remember-me {
@@ -173,55 +243,70 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 0px;
-  color: #5c5c5c;
+  color: var(--ink-soft);
   cursor: pointer;
 }
 
 .login-container .remember-me input {
   width: 15px;
   height: 15px;
-  accent-color: #a3435b;
+  accent-color: var(--gold);
 }
 
 .login-container .forgot-password {
-  color: #a3435b !important;
+  color: var(--gold-soft) !important;
   font-weight: 500;
 }
 
 .login-container .login-frame .login-btn {
   position: relative;
-  margin-top: 24px;
+  margin-top: 26px;
   width: 100%;
-  height: 52px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #a3435b;
+  background: linear-gradient(135deg, var(--gold), #a9803f);
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 22px;
-  color: #ffffff;
-  transition: background 0.2s ease;
+  color: #211a13;
+  transition: filter 0.2s ease;
 }
 
 .login-container .login-frame .login-btn:hover {
-  background: #8c3a4e;
+  filter: brightness(1.08);
 }
 
 .login-container .signup-hint {
-  margin-top: 20px;
+  margin-top: 22px;
   margin-bottom: 0px;
   text-align: center;
   font-family: "Poppins";
-  font-size: 14px;
-  color: #6b6b6b;
+  font-size: 12px;
+  color: var(--ink-soft);
 }
 
 .login-container .signup-hint a {
-  color: #a3435b !important;
+  color: var(--gold-soft) !important;
   font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-container .login-side {
+    padding: 40px;
+    min-height: 220px;
+  }
+
+  .login-container .login-side-quote {
+    display: none;
+  }
 }

@@ -1,63 +1,35 @@
 console.log("Home frontend javascript file");
 
-import {
-  createTimeline,
-  stagger,
-  utils,
-} from 'https://esm.sh/animejs';
+const field = document.querySelector(".home-animation");
 
-const { random, cos, sin, sqrt, PI } = Math;
-const count = 2500;
-const duration = 3000;
-const container = document.querySelector('.home-animation');
-const win = { w: window.innerWidth * .26, h: window.innerHeight * .26 };
-const target = { x: 0, y: 0, r: win.w * .25 };
-const radius = Symbol();
-const theta = Symbol();
+if (field) {
+  const sparkCount = 70;
+  for (let i = 0; i < sparkCount; i++) {
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    const size = 1 + Math.random() * 2.4;
+    spark.style.width = size + "px";
+    spark.style.height = size + "px";
+    spark.style.left = Math.random() * 100 + "%";
+    spark.style.top = Math.random() * 70 + "%";
+    spark.style.animationDuration = 2 + Math.random() * 3 + "s";
+    spark.style.animationDelay = Math.random() * -5 + "s";
+    field.appendChild(spark);
+  }
 
-for (let i = 0; i < count; i++) {
-  const $el = document.createElement('div');
-  const h = utils.random(15, 25);
-  const l = utils.random(10, 18);
-  utils.set($el, { background: `hsl(${h}, 60%, ${l}%)` });
-  $el[theta] = random() * PI * 2;
-  $el[radius] = target.r * sqrt(random());
-  container.appendChild($el);
+  const colors = ["#c6a15b", "#d88aa0", "#e8d3a3"];
+  const driftCount = 20;
+  for (let i = 0; i < driftCount; i++) {
+    const petal = document.createElement("div");
+    petal.className = "drift";
+    const size = 4 + Math.random() * 8;
+    petal.style.width = size + "px";
+    petal.style.height = size + "px";
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+    petal.style.setProperty("--x-drift", Math.random() * 140 - 70 + "px");
+    petal.style.animationDuration = 11 + Math.random() * 9 + "s";
+    petal.style.animationDelay = Math.random() * -18 + "s";
+    field.appendChild(petal);
+  }
 }
-
-const tl = createTimeline({
-  defaults: {
-    loop: true,
-    ease: 'inOut(1.3)',
-    onLoop: self => self.refresh(),
-  },
-});
-
-tl.add('.home-animation div', {
-  x: $el => target.x + ($el[radius] * cos($el[theta])),
-  y: $el => target.y + ($el[radius] * sin($el[theta])),
-  duration: () => duration + utils.random(-100, 100),
-  ease: 'inOut(1.5)',
-  onLoop: self => {
-    const t = self.targets[0];
-    t[theta] = random() * PI * 2;
-    t[radius] = target.r * sqrt(random());
-    self.refresh();
-  },
-}, stagger((duration / count) * 1.125))
-.add(target, {
-  r: () => win.w * utils.random(.05, .5, 2),
-  duration: 1250,
-}, 0)
-.add(target, {
-  x: () => utils.random(-win.w, win.w),
-  modifier: x => x + sin(tl.currentTime * .0007) * (win.w * .65),
-  duration: 2800,
-}, 0)
-.add(target, {
-  y: () => utils.random(-win.h, win.h),
-  modifier: y => y + cos(tl.currentTime * .00012) * (win.h * .65),
-  duration: 1800,
-}, 0);
-
-tl.seek(20000)
