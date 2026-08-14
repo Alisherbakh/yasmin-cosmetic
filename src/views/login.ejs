@@ -19,7 +19,11 @@
     <div class="login-form-side">
     <div class="login-form-card">
     <a class="back-home-link" href="/admin">&larr; Back to Home</a>
-    <form class="login-frame" action="/admin/login" method="POST">
+    <form class="login-frame" action="/admin/login" method="POST" autocomplete="off">
+      <!-- decoy fields: bait the browser's autofill so it leaves the real inputs alone -->
+      <input type="text" name="fakeusernameremembered" autocomplete="off" tabindex="-1" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+      <input type="password" name="fakepasswordremembered" autocomplete="off" tabindex="-1" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+
       <div class="login-top">
         <span class="login-title">Welcome Back</span>
         <p class="login-subtitle">Login to your account</p>
@@ -34,6 +38,9 @@
             class="member-nick"
             placeholder="Enter your store name"
             value=""
+            autocomplete="off"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
             required
           />
         </div>
@@ -46,6 +53,9 @@
               class="member-password"
               placeholder="Enter your password"
               value=""
+              autocomplete="new-password"
+              readonly
+              onfocus="this.removeAttribute('readonly');"
               required
             />
             <button type="button" class="toggle-password" aria-label="Show password">
@@ -63,10 +73,6 @@
       </div>
 
       <div class="login-options">
-        <label class="remember-me">
-          <input type="checkbox" class="remember-checkbox" />
-          Remember me
-        </label>
         <a href="#" class="forgot-password">Forgot password?</a>
       </div>
 

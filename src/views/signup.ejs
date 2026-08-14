@@ -25,7 +25,12 @@
       method="POST"
       enctype="multipart/form-data"
       class="signup-frame"
+      autocomplete="off"
     >
+      <!-- decoy fields: bait the browser's autofill so it leaves the real inputs alone -->
+      <input type="text" name="fakeusernameremembered" autocomplete="off" tabindex="-1" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+      <input type="password" name="fakepasswordremembered" autocomplete="off" tabindex="-1" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;" />
+
       <div class="signup-top">
         <span class="signup-title">Create Account</span>
         <p class="signup-subtitle">Sign up to create your store</p>
@@ -40,6 +45,9 @@
             class="member-nick"
             placeholder="Enter your store name"
             value=""
+            autocomplete="off"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
           />
         </div>
         <div class="sign-up-frame">
@@ -50,6 +58,9 @@
             class="member-phone"
             placeholder="Enter your phone"
             value=""
+            autocomplete="off"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
           />
         </div>
       </div>
@@ -64,6 +75,9 @@
               class="member-password"
               placeholder="Enter your password"
               value=""
+              autocomplete="new-password"
+              readonly
+              onfocus="this.removeAttribute('readonly');"
             />
             <button type="button" class="toggle-password" aria-label="Show password">
               <svg class="eye-icon eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -86,6 +100,9 @@
               class="confirm-password"
               placeholder="Repeat your password"
               value=""
+              autocomplete="new-password"
+              readonly
+              onfocus="this.removeAttribute('readonly');"
             />
             <button type="button" class="toggle-password" aria-label="Show password">
               <svg class="eye-icon eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
