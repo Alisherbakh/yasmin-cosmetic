@@ -16,7 +16,7 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  background: var(--bg);
+  background: radial-gradient(ellipse at 50% 40%, #2a2022 0%, #1b1417 70%);
 }
 
 .login-container a {
@@ -24,29 +24,19 @@
   color: var(--ink);
 }
 
-/* Left brand panel */
-.login-container .login-side {
-  flex: 1.1;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 30% 20%, #3a2a2c 0%, #1b1417 65%);
+/* Top brand block */
+.login-container .login-top-brand {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 56px;
+  align-items: center;
+  text-align: center;
 }
 
-.login-container .login-side-glow {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(198, 161, 91, 0.18), transparent 70%);
-  bottom: -100px;
-  right: -80px;
-}
-
-.login-container .side-brand-title {
+.login-container .top-brand-title {
   font-family: "Fraunces", serif;
   font-weight: 500;
   font-size: 34px;
@@ -54,7 +44,7 @@
   color: var(--ink);
 }
 
-.login-container .side-brand-sub {
+.login-container .top-brand-sub {
   font-family: "Poppins";
   font-size: 11px;
   letter-spacing: 5px;
@@ -63,32 +53,13 @@
   margin-top: 6px;
 }
 
-.login-container .login-side-quote {
-  position: relative;
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.5;
-  color: var(--gold-soft);
-  max-width: 420px;
-}
-
-.login-container .login-side-foot {
-  position: relative;
-  font-size: 11px;
-  color: var(--ink-soft);
-  letter-spacing: 0.5px;
-}
-
-/* Right form panel */
+/* Centered form panel */
 .login-container .login-form-side {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: var(--panel);
 }
 
 .login-container .login-form-card {
@@ -282,16 +253,11 @@
 }
 
 @media (max-width: 860px) {
-  .login-container {
-    flex-direction: column;
+  .login-container .login-top-brand {
+    top: 32px;
   }
 
-  .login-container .login-side {
-    padding: 40px;
-    min-height: 220px;
-  }
-
-  .login-container .login-side-quote {
-    display: none;
+  .login-container .top-brand-title {
+    font-size: 26px;
   }
 }

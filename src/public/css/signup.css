@@ -16,7 +16,7 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  background: var(--bg);
+  background: radial-gradient(ellipse at 50% 40%, #2a2022 0%, #1b1417 70%);
 }
 
 .signup-container a {
@@ -24,29 +24,19 @@
   color: var(--ink);
 }
 
-/* Left brand panel */
-.signup-container .signup-side {
-  flex: 1.1;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 70% 80%, #3a2a2c 0%, #1b1417 65%);
+/* Top brand block */
+.signup-container .signup-top-brand {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 56px;
+  align-items: center;
+  text-align: center;
 }
 
-.signup-container .signup-side-glow {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(216, 138, 160, 0.16), transparent 70%);
-  top: -100px;
-  left: -80px;
-}
-
-.signup-container .side-brand-title {
+.signup-container .top-brand-title {
   font-family: "Fraunces", serif;
   font-weight: 500;
   font-size: 34px;
@@ -54,7 +44,7 @@
   color: var(--ink);
 }
 
-.signup-container .side-brand-sub {
+.signup-container .top-brand-sub {
   font-family: "Poppins";
   font-size: 11px;
   letter-spacing: 5px;
@@ -63,32 +53,13 @@
   margin-top: 6px;
 }
 
-.signup-container .signup-side-quote {
-  position: relative;
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.5;
-  color: var(--gold-soft);
-  max-width: 420px;
-}
-
-.signup-container .signup-side-foot {
-  position: relative;
-  font-size: 11px;
-  color: var(--ink-soft);
-  letter-spacing: 0.5px;
-}
-
-/* Right form panel */
+/* Centered form panel */
 .signup-container .signup-form-side {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: var(--panel);
 }
 
 .signup-container .signup-form-card {
@@ -371,17 +342,12 @@
 }
 
 @media (max-width: 860px) {
-  .signup-container {
-    flex-direction: column;
+  .signup-container .signup-top-brand {
+    top: 32px;
   }
 
-  .signup-container .signup-side {
-    padding: 40px;
-    min-height: 200px;
-  }
-
-  .signup-container .signup-side-quote {
-    display: none;
+  .signup-container .top-brand-title {
+    font-size: 26px;
   }
 }
 
